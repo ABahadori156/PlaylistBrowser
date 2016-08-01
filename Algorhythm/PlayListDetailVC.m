@@ -7,6 +7,7 @@
 //
 
 #import "PlayListDetailVC.h"
+#import "Playlist.h"
 
 @interface PlayListDetailVC ()
 
@@ -16,22 +17,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // We do the if statement clause to make sure our playlist instance isn't nil
+    if (self.playlist) {
+        self.playlistCoverImage.image = self.playlist.playlistIconLarge;
+        self.playlistCoverImage.backgroundColor = self.playlist.backgroundColor;
+        self.playlistTitle.text = self.playlist.playlistTitle;
+        self.playlistDescription.text = self.playlist.playlistDescription;
+        
+        self.playlistArtist0.text = self.playlist.playlistArtists[0];
+        self.playlistArtist1.text = self.playlist.playlistArtists[1];
+        self.playlistArtist2.text = self.playlist.playlistArtists[2];
+        self.playlistArtist3.text = self.playlist.playlistArtists[3];
+        
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

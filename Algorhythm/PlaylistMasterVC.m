@@ -7,6 +7,8 @@
 //
 
 #import "PlaylistMasterVC.h"
+#import "PlayListDetailVC.h"
+#import "Playlist.h"
 
 @interface PlaylistMasterVC ()
 
@@ -18,18 +20,31 @@
     [super viewDidLoad];
     
     //Programatically sets the title and it's state
-    [self.aButton setTitle:@"Press me!" forState:UIControlStateNormal];
+//    [self.aButton setTitle:@"Press me!" forState:UIControlStateNormal];
     
-    [self.aButton setTintColor:[UIColor redColor]];
+
+// How to change the text color of a button
+//    [self.aButton setTintColor:[UIColor redColor]];
     
-}
-- (IBAction)buttonPressed:(UIButton *)sender {
-    self.view.backgroundColor = [UIColor orangeColor];
+    Playlist *playlist = [[Playlist alloc] initWithIndex:0];
+    self.playlistImageView0.image = playlist.playlistIcon;
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (IBAction)showPlaylistDetail:(id)sender {
+    [self performSegueWithIdentifier:@"showPlaylistDetail" sender:sender];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqual:@"showPlaylistDetail"]) {
+        
+        //below we cast the PlayListDetailVC as the destinationViewController
+        PlayListDetailVC *dvc = (PlayListDetailVC *)segue.destinationViewController;
+        
+        dvc.playlist = [[Playlist alloc] initWithIndex:0];
+        
+    }
 }
 
 @end
